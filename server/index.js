@@ -8,7 +8,16 @@ const app = express();
 app.use(bodyParser.json());
 
 // Routes
-app.get('/', (req, res) => res.send('OK'));
+// app.get('/', (req, res) => res.send('OK'));
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+
+  const path = require('path');
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve('client', 'build', 'index.html'));
+  });
+}
 
 // Listen
 const server = app.listen(PORT, () =>
