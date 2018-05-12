@@ -8,7 +8,7 @@ const app = express();
 app.use(bodyParser.json());
 
 // Routes
-// app.get('/', (req, res) => res.send('OK'));
+app.use('/api/auth', require('./routes/authRoutes'));
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
