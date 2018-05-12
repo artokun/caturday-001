@@ -5,6 +5,9 @@ require('dotenv').config();
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI;
 
+// Register models
+require('./models/User');
+
 // Connect DB
 mongoose.connect(MONGO_URI);
 
